@@ -1,0 +1,24 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+    <bean id="exitCommand" class="cli.command.ExitCommand"/>
+    <bean id="echoCommand" class="cli.command.EchoCommand"/>
+    <bean id="dirCommand" class="cli.command.DirCommand"/>
+    <bean id="helpCommand" class="cli.command.HelpCommand">
+        <constructor-arg>
+            <ref bean="commandSet"/>
+        </constructor-arg>
+    </bean>
+
+    <bean id="commandSet" class="cli.CommandSet">
+        <constructor-arg>
+            <list>
+                <ref bean="exitCommand"/>
+                <ref bean="echoCommand"/>
+                <ref bean="dirCommand"/>
+            </list>
+        </constructor-arg>
+    </bean>
+</beans>
